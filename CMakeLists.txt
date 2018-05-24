@@ -6,7 +6,8 @@ cmake_minimum_required(VERSION 3.11.0 FATAL_ERROR)
 
 
 option(BUILD_TESTS "Build tests." OFF)
-#set(SOUL_ROOT "../Soul Engine" CACHE STRING "The directory location of Soul Engine")
+set(SOUL_ROOT "N:/Projects/Soul Engine" CACHE STRING "The directory location of Soul Engine")
+set(SOUL_BUILD "N:/Projects/Soul Engine/Build" CACHE STRING "The build location of Soul Engine")
 
 ##############################################
 #Project 
@@ -20,19 +21,15 @@ HunterGate(
 )
 
 project(SoulConsole
-	VERSION 0.0.1
-	DESCRIPTION "Soul Engine console interface."
-	LANGUAGES CXX
+    VERSION 0.0.1
+    DESCRIPTION "Soul Engine editor and project interface."
+    LANGUAGES CXX
 )
 
-list(APPEND CMAKE_MODULE_PATH ${PROJECT_SOURCE_DIR}/CMake)
+list(APPEND CMAKE_MODULE_PATH ${CMAKE_CURRENT_SOURCE_DIR}/CMake)
 
 set_property(GLOBAL PROPERTY USE_FOLDERS ON)
-set_property(DIRECTORY ${PROJECT_SOURCE_DIR} PROPERTY VS_STARTUP_PROJECT ${PROJECT_NAME})
-
-set(CMAKE_CXX_STANDARD 17)
-set(CMAKE_CXX_VISIBILITY_PRESET hidden)
-set(CMAKE_VISIBILITY_INLINES_HIDDEN 1)
+set_property(DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR} PROPERTY VS_STARTUP_PROJECT ${PROJECT_NAME})
 
 
 ##############################################
@@ -55,8 +52,8 @@ source_groups(${PROJECT_FILES})
 #Dependencies
 
 
-find_package(SoulEngine REQUIRED)
-
+#find_package(SoulEngine REQUIRED)
+add_subdirectory(${SOUL_ROOT} ${SOUL_BUILD})
 
 ##############################################
 #Targets
@@ -65,15 +62,15 @@ find_package(SoulEngine REQUIRED)
 add_executable(${PROJECT_NAME} ${PROJECT_FILES})
 
 set_target_properties(${PROJECT_NAME} 
-	PROPERTIES 
+    PROPERTIES 
         LINKER_LANGUAGE CXX
-	   	CXX_EXTENSIONS OFF	
+        CXX_EXTENSIONS OFF  
+        CXX_STANDARD 17
 )
 
 target_include_directories(${PROJECT_NAME}
     PUBLIC 
         $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/Include>
-        $<BUILD_INTERFACE:${CMAKE_CURRENT_BINARY_DIR}>
         $<INSTALL_INTERFACE:Include>
     PRIVATE
         Source
@@ -82,7 +79,7 @@ target_include_directories(${PROJECT_NAME}
 target_link_libraries(${PROJECT_NAME}
     PUBLIC
 
-    PRIVATE		
+    PRIVATE     
         Soul::SoulEngine
 )
 
