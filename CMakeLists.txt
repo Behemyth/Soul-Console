@@ -15,8 +15,8 @@ set(SOUL_BUILD "N:/Projects/Soul Engine/Build" CACHE STRING "The build location 
 include(${CMAKE_CURRENT_SOURCE_DIR}/CMake/Hunter/HunterGate.cmake)
 
 HunterGate(
-    URL "https://github.com/ruslo/hunter/archive/v0.22.0.tar.gz"
-    SHA1 "f91a01c6e0eb53b1dc55a6442cd93580db91da07"
+    URL "https://github.com/ruslo/hunter/archive/v0.23.14.tar.gz"
+    SHA1 "f58bcf274f29097ac380bfe4955d2a66f077e741"
     FILEPATH ${CMAKE_CURRENT_SOURCE_DIR}/CMake/Hunter/config.cmake
 )
 
