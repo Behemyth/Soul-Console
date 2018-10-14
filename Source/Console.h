@@ -2,10 +2,9 @@
 
 #include "SoulApplication.h"
 
-class Console : public SoulApplication<Console> {
+class Console : public SoulApplication {
 
 public:
-
-private:
+	Console(SoulParameters params);
 
 };
