@@ -4,6 +4,7 @@ cmake_minimum_required(VERSION 3.11.0 FATAL_ERROR)
 ##############################################
 #Options
 
+add_compile_definitions(WITH_CLI)
 
 option(BUILD_TESTS "Build tests." OFF)
 set(SOUL_ROOT "${CMAKE_CURRENT_SOURCE_DIR}/../Soul Engine" CACHE STRING "The directory location of Soul Engine")
@@ -82,11 +83,6 @@ target_link_libraries(${PROJECT_NAME}
     PRIVATE     
         Soul::SoulEngine
 )
-
-#############################################
-#Define Console Input
-
-add_compile_definitions(WITH_CONSOLE)
 
 ##############################################
 #Tests
